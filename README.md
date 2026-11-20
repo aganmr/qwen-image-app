@@ -302,3 +302,10 @@ finished `result.images[0].b64_json` is written to `images\`.
 - the "Load model / Unload" buttons and the "Text encoder in RAM" toggle
 - the per-generation `sd-cli.exe` subprocess (replaced by the resident
   `sd-server.exe` with `--eager-load`)
+
+## License
+
+The application code is MIT-licensed (see [LICENSE](LICENSE)). The model
+weights are **not** part of this repo and are governed by their own licenses:
+Qwen-Image under the Qwen Research License, and Real-ESRGAN under CC BY-NC 4.0
+(personal use).
