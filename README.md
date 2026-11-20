@@ -43,7 +43,13 @@ qwen-image-app/
 └── images/                      # outputs (auto-created, timestamped filenames)
 ```
 
-## Setup (one time — the app does no downloading)
+## Setup (one time)
+
+**Easiest:** double-click **`setup.bat`** (Windows 10+). It creates the folder
+layout and downloads the engine (`sdcpp\`) and every weight (`models\`, ~13 GB)
+using the built-in `curl` and `tar`. Re-run it any time to top up missing or
+changed files. The manual steps below are exactly what it does — follow them if
+you'd rather grab the files by hand.
 
 1. **Engine:** download **both** Windows CUDA assets from the
    [stable-diffusion.cpp releases](https://github.com/leejet/stable-diffusion.cpp/releases)
@@ -79,6 +85,10 @@ qwen-image-app/
 ```
 python app.py
 ```
+
+Or run the standalone **`qwen-image-app.exe`** from the release assets — it
+needs `sdcpp\` and `models\` sitting next to it (set up as above, or by
+`setup.bat`).
 
 The app starts with no server running (zero VRAM cost). On the first
 **Generate** click it:
