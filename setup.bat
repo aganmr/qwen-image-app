@@ -6,9 +6,10 @@ rem
 rem  Downloads the stable-diffusion.cpp engine (sdcpp\) and the
 rem  Qwen-Image-2.1-Turbo weights (models\). ~13 GB total.
 rem
-rem  * Re-runnable: files whose size matches the source are skipped;
-rem    any other file is re-downloaded from scratch (a size mismatch
-rem    means an older build or a partial download - never resume onto it).
+rem  * Re-runnable: files whose size matches the source are skipped.
+rem    Downloads go to a .part file (so a dropped connection resumes on
+rem    re-run) and are moved into place only once complete - so the final
+rem    file is never a partial. A size mismatch (older build) restarts.
 rem  * Requires Windows 10+ (curl and tar ship with the OS).
 rem  * All sources are public. If a weight is ever gated, set
 rem    HF_TOKEN before running and re-run.
@@ -83,6 +84,7 @@ rem  Download one file. Skips if already complete, resumes if partial.
 :get
 set "URL=%~1"
 set "DEST=%~2"
+set "PART=%DEST%.part"
 set "RMT="
 set "LOC="
 if exist "%DEST%" (
@@ -90,20 +92,25 @@ if exist "%DEST%" (
     for %%A in ("%DEST%") do set "LOC=%%~zA"
     if defined RMT if "!RMT!"=="!LOC!" (
         echo   [skip] %DEST%   (complete)
+        if exist "%PART%" del "%PART%"
         goto :eof
     )
-    rem Size differs - the local file is not the current remote file
-    rem (an older build, or a partial download). Resuming would append
-    rem the remote tail onto the wrong bytes and corrupt it, so start
-    rem over from scratch.
+    rem Final file's size doesn't match the source - it's an older build
+    rem (or a stray partial). Drop it and any stale .part, start fresh.
     echo   [redo] %DEST%   (have !LOC!, need !RMT!)
     del "%DEST%"
+    if exist "%PART%" del "%PART%"
 )
-curl -L %AUTH% --fail --retry 3 -o "%DEST%" "%URL%"
+rem Download to a .part file so a dropped connection resumes on re-run,
+rem then move it into place only once complete - the final file is never
+rem a partial.
+echo   [get ] %DEST%
+curl -L -C - %AUTH% --fail --retry 3 -o "%PART%" "%URL%"
 if errorlevel 1 (
-    echo   [FAIL] %URL%
+    echo   [FAIL] %URL%   (partial kept as %PART% - re-run to resume)
     exit /b 1
 )
+move /y "%PART%" "%DEST%" >nul
 goto :eof
 
 rem ============================================================
