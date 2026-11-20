@@ -1,0 +1,3 @@
+customtkinter
+pillow
+# GPU queries go through nvidia-smi (ships with the driver) — no Python NVML package needed

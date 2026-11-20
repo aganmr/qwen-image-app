@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Model weights — download manually (README "Setup 3", ~10 GB)
+models/
+
+# stable-diffusion.cpp engine binaries — download manually (README "Setup 1")
+# (the .bat / .sh / .txt notes in sdcpp/ are still tracked)
+sdcpp/*.exe
+sdcpp/*.dll
+
+# Generated outputs (timestamped)
+images/
+
+# App log (server stdout is piped here at DEBUG)
+app.log
+
+# User-local settings (auto-created by the app on first switch change)
+settings.ini
+
+# PyInstaller build artifacts
+build/
+dist/
+*.spec

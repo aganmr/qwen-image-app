@@ -1,0 +1,17 @@
+{
+  "scenarios": {
+    "Colorize": "Colorize this black-and-white photograph with vivid, saturated, popping colors. Preserve the original composition, lighting, and facial features. Make the colors rich and vibrant, bold and eye-catching, with strong saturation and contrast.",
+    "Restore": "Restore this old, damaged photograph. Repair scratches, tears, creases, and fading. Reconstruct missing details naturally. Stay faithful to the original subjects and composition.",
+    "Remove marks": "Remove the watermark, stamps, signatures, and handwritten annotations from this image. Reconstruct the underlying background seamlessly and naturally.",
+    "De-blur": "Restore sharp focus to this blurry photograph. Recover fine detail cleanly without adding artifacts or altering the original content.",
+    "Clean scan": "Clean up this photographed document. Straighten the perspective, even out the lighting, remove shadows and background clutter, and make the text crisp and high-contrast.",
+    "Sketch to photo": "Turn this sketch into a photorealistic photograph. Keep the composition and subject exactly as drawn. Add realistic textures, lighting, and color.",
+    "Cutout": "Isolate the main subject of this image on a fully transparent background. Keep edges clean and preserve fine detail such as hair and fur."
+  },
+  "boosters": {
+    "Sharp & clean": "sharp focus, crisp fine details, high resolution, clean rendering",
+    "No artifacts": "no compression artifacts, no watermark, no text overlays, no stray marks",
+    "Correct anatomy": "correct anatomy, correct hands and fingers, natural proportions",
+    "Studio quality": "professional studio lighting, balanced exposure, clean background"
+  }
+}
